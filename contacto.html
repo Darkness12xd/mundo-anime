@@ -1,3 +1,10 @@
+<?php
+if(isset($_POST['submit'])){
+$Nombre=$_POST['Nombre'];
+$Email=$_POST['Email'];
+$Mensaje=$_POST['Mensaje'];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,11 +44,14 @@
             <h2 class="titulo-footer">Contactanos</h2>
             <h3 class="subtitulo-footer">Lo apreciariamos mucho</h3>
             <div class="footer">
-                <form action="">
-                    <input type="text" name="" id="" placeholder="Nombre">
-                    <input type="email" name="" id="" placeholder="Email">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Ingrese su mensaje..."></textarea>
-                    <input type="submit" value="Enviar">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?" method="post">
+                    <input type="text" name="Nombre" id="" placeholder="Nombre" value="<?php if(isset($Nombre)) echo $Nombre ?>">
+                    <input type="email" name="Email" id="" placeholder="Email" value="<?php if(isset($Email)) echo $Email ?>">
+                    <textarea name="Mensaje" id="" cols="30" rows="10" placeholder="Mensaje" value="<?php if(isset($Mensaje)) echo $Mensaje ?>"></textarea>
+                    <input type="submit" name="submit" value="Enviar">
+			<?php
+include("validar-form.php");
+?>
                 </form>
             </div>
         </div>
